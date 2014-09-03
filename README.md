@@ -1,21 +1,22 @@
-vagrant-chef-server-client-setup
-================================
+# Vagrant Chef Server-Client-Setup
 
 The repository contains a Vagrant configuration that provides a local chef server-client-setup.
 
+## Configuration
 
-# Vagrant Chef Server-Client-Setup
+* Ubuntu 12.04 64Bit LTS
+* Ruby 2.1.0
+* Vagrant 1.6.3
 
 ## Instructions
 
-* Adjust Vagrantfile
-* Test your Vagrant up
-* config.vm.box  # get box from https://vagrantcloud.com/
-* https://docs.vagrantup.com/v2/multi-machine/
-** Ubuntu 12.04 64Bit LTS Server Edition
-* INstall Vagrant omnibus: https://github.com/schisamo/vagrant-omnibus
-https://github.com/schisamo/vagrant-omnibus
-* adjust vagrantfile, add your chef-solo
-* http://downloads.getchef.com/chef-dk/mac/#/ install Chef dk
-* install vagrant berkshelf
-** vagrant plugin install vagrant-berkshelf
+* Checkout repository
+* Install Vagrant Omnibus https://github.com/schisamo/vagrant-omnibus
+```
+vagrant plugin install vagrant-omnibus
+```
+* Install Vagrant Berkshelf
+```
+install vagrant berkshelf
+```
+* Install Chef developement kit from http://downloads.getchef.com/chef-dk/mac/#/
