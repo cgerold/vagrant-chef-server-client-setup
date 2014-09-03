@@ -26,6 +26,18 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 		chef_server_config.vm.network "private_network", ip: "192.168.32.101"
 		chef_server_config.vm.hostname = "chef-server"
 		chef_server_config.omnibus.chef_version = OMNIBUS_CHEF_VERSION
+
+		chef_config.vm.provision :chef_solo do |chef|
+			chef.cookbooks_path = ["site-cookbooks", "cookbooks"]
+			chef.roles_path = "roles"
+			chef.data_bags_path = "data_bags"
+			chef.provisioning_path = guest_cache_path
+				# logging
+			chef.log_level = :info
+			chef.run_list = [
+				"recipe[chef-server::default]"
+			]
+		end
 	end
 
 		# Chef Client Nodes
