@@ -1,9 +1,6 @@
-# Vagrant Chef Server-Client-Setup
+# Vagrant Chef Server-Client-Setup [DRAFT]
 
 The repository contains a Vagrant configuration that provides a local chef server-client-setup.
-
-## Configuration
-
 
 ## Requirement
 
@@ -15,12 +12,12 @@ The repository contains a Vagrant configuration that provides a local chef serve
 ## Configuration
 
 The setup is tested with Ubuntu 12.04 64Bit LTS on Mac OS X.
-If you want to change the OS of your local vagrant box you have to edit the following lines in the Vagrantfile:
+If you want to change the OS of your local vagrant boxes you have to edit the following lines in the Vagrantfile:
 ```
 chef_server_config.vm.box = "hashicorp/precise64"
 ```
 
-There are some preconfigured boxes available at https://vagrantcloud.com/
+There are some preconfigured boxes available at https://vagrantcloud.com/.
 
 ## Installation
 
