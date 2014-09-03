@@ -1,6 +1,6 @@
-# Vagrant Chef Server-Client-Setup [DRAFT]
+# Vagrant-Multi-Machine Chef Server-Client-Setup [DRAFT]
 
-The repository contains a Vagrant configuration that provides a local chef server-client-setup.
+The repository contains a Vagrant-Multi-Machine configuration that provides a local chef server-client-setup.
 
 ## Requirement
 
