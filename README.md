@@ -8,14 +8,17 @@ chef_server_config.vm.box = "hashicorp/precise64"
 ```
 There are useful preconfigured boxes available at https://vagrantcloud.com/.
 
-I use chef-solo to install chef-server
-
 ## Requirement
 
 * VirtualBox
 * Ruby 2.1.0
 * Vagrant 1.6.3 (https://www.vagrantup.com/)
 * Chef Development Kit 0.2.1 (http://downloads.getchef.com/chef-dk/)
+* Chef Omnibus Installer
+** Use this to install chef-client, berkshelf, knife and others on your local workstation
+```
+curl -L https://www.getchef.com/chef/install.sh | sudo bash
+```
 
 ## Configuration
 
@@ -33,13 +36,13 @@ vagrant plugin install vagrant-omnibus
 ```
 install vagrant berkshelf
 ```
-* Start your local nodes (if you want to start a specific box add the name to the command)
-```
-vagrant up [NAME_OF_THE_BOX]
-```
-* Install the cookbook local
+* Install the needed cookbooks
 ```
 berks install
+```
+* Start your local nodes (if you want to start a specific box append the name of it to the command)
+```
+vagrant up [NAME_OF_THE_BOX]
 ```
 
 
