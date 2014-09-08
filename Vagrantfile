@@ -21,28 +21,39 @@ chef_client_nodes = [
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
 		# Chef Server
+		# https://docs.vagrantup.com/v2/provisioning/chef_solo.html
 	config.vm.define :chef_server, primary: true do |chef_server_config|
 		chef_server_config.vm.box = "hashicorp/precise64"
 		chef_server_config.vm.network "private_network", ip: "192.168.32.101"
 		chef_server_config.vm.hostname = "chef-server"
-		chef_server_config.omnibus.chef_version = OMNIBUS_CHEF_VERSION
 
-		chef_config.vm.provision :chef_solo do |chef|
-			chef.cookbooks_path = ["site-cookbooks", "cookbooks"]
-			chef.roles_path = "roles"
-			chef.data_bags_path = "data_bags"
-			chef.provisioning_path = guest_cache_path
+		chef_server_config.vm.provision :chef_solo do |chef|
 				# logging
 			chef.log_level = :info
+				# add recipes to run list
 			chef.run_list = [
 				"recipe[chef-server::default]"
 			]
+
+				# cookbook attributes
+			chef.json = {
+				"chef-server" => {
+					"version" => "latest",
+					"configuration" => {
+						"chef_server_webui" => {
+							"enable" => true
+						}
+					}
+				}
+			}
 		end
 	end
 
 		# Chef Client Nodes
+		# https://docs.vagrantup.com/v2/provisioning/chef_client.html
 	chef_client_nodes.each do |node_option|
 		config.vm.define node_option[:name] do |node_config|
+			node_config.chef_version = OMNIBUS_CHEF_VERSION
 			node_config.vm.box = "hashicorp/precise64"
 			node_config.vm.network "private_network", ip: node_option[:ip]
 			node_config.vm.hostname = node_option[:hostname].to_s

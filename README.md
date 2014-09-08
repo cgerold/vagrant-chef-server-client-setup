@@ -14,16 +14,11 @@ There are useful preconfigured boxes available at https://vagrantcloud.com/.
 * Ruby 2.1.0
 * Vagrant 1.6.3 (https://www.vagrantup.com/)
 * Chef Development Kit 0.2.1 (http://downloads.getchef.com/chef-dk/)
-* Chef Omnibus Installer
+* Chef Omnibus Installer (chef-client 11.14.6)
 ** Use this to install chef-client, berkshelf, knife and others on your local workstation
 ```
 curl -L https://www.getchef.com/chef/install.sh | sudo bash
 ```
-
-## Configuration
-
-* chef-server
-* chef-client
 
 ## Installation
 
@@ -36,13 +31,26 @@ vagrant plugin install vagrant-omnibus
 ```
 install vagrant berkshelf
 ```
-* Install the needed cookbooks
+* Install the required cookbooks
 ```
 berks install
 ```
-* Start your local nodes (if you want to start a specific box append the name of it to the command)
+* Start your local machines (if you want to start a specific box append the name of it to the command)
 ```
 vagrant up [NAME_OF_THE_BOX]
+```
+
+After the chef server is up you can call the gui with http://192.168.32.101.
+Defaul tuser ist admin, password is.
+You have to change this after
+
+## Configuration
+
+* Copy the pem-keys to your local disk
+
+* Setup Knife configuration
+```
+knife configure -i
 ```
 
 
