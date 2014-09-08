@@ -1,2 +1,4 @@
 .vagrant
 Gemfile.lock
+admin.pem
+chef-validator.pem
