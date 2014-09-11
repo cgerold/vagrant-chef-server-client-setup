@@ -53,7 +53,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 		# https://docs.vagrantup.com/v2/provisioning/chef_client.html
 	chef_client_nodes.each do |node_option|
 		config.vm.define node_option[:name] do |node_config|
-			node_config.chef_version = OMNIBUS_CHEF_VERSION
 			node_config.vm.box = "hashicorp/precise64"
 			node_config.vm.network "private_network", ip: node_option[:ip]
 			node_config.vm.hostname = node_option[:hostname].to_s
@@ -64,7 +63,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 	config.vm.provider "virtualbox" do |vb|
 		vb.customize ['modifyvm', :id, '--memory', '512']
 		vb.customize ['modifyvm', :id, '--cpus', '1']
-		vb.customize ['modifyvm', :id, '--size', '5000 * 1024']
 		vb.gui = false
 	end
 end
