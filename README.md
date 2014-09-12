@@ -57,8 +57,12 @@ $ knife configure -i
 
 * Copy the pem keys from chef server to your local .chef/ directory
 ```
-$ cp admin.pem /vagrant/.chef/
-$ cp chef-validator.pem /vagrant/.chef/
+$ cp admin.pem /vagrant/chef-repo/.chef/
+$ cp chef-validator.pem /vagrant/chef-repo/.chef/
+```
+* Change to the chef-repo directory
+```
+cd chef-repo/
 ```
 
 * Check your config with
@@ -78,9 +82,10 @@ chef-webui
 $ knife bootstrap IP_OF_YOUR_NODE(S) -x vagrant -P vagrant --sudo --node-name NODE_NAME
 ```
 
-* Upload the chef webserver role
+* Upload the chef webserver and node1 role
 ```
 $ knife role from file chef-repo/roles/webserver.rb
+$ knife role from file chef-repo/roles/node1.rb
 ```
 
 * Open the node's definition file
@@ -88,7 +93,7 @@ $ knife role from file chef-repo/roles/webserver.rb
 $ knife node edit node_name
 ```
 
-* Assign the role to the node (place the role within the run_list definition)
+* Assign the webserver role to the node (place the role within the run_list definition)
 ```
 {
 	"name": "node1",
@@ -100,4 +105,15 @@ $ knife node edit node_name
 		"role[webserver]"
 	]
 }
+```
+
+* Get the cookbooks including their dependencies via Berkshelf
+```
+$ berks install
+```
+
+* Upload the cookbooks including dependencies via Berkshelf to the chef server
+```
+$ berks upload apache2 --ssl-verify=false
+$ berks upload mysql --ssl-verify=false
 ```

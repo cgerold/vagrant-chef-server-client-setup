@@ -1,4 +1,6 @@
 .vagrant
 Gemfile.lock
+Berksfile.lock
 admin.pem
 chef-validator.pem
+syntax_check_cache
