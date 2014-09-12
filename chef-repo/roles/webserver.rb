@@ -1,11 +1,13 @@
-{
-	"name": "webserver",
-	"chef_type": "role",
-	"json_class": "Chef::Role",
-	"description": "Basisrolle für einen Webserver",
-	"override_attributes": {},
-	"run_list": [
-		"recipe[apache2]",
-		"recipe[mysql]"
-	],
-}
+name "webserver"
+description "Base role for a webserver"
+
+run_list(
+	"recipe[apache2]",
+	"recipe[mysql]"
+)
+
+default_attributes(
+	"apache" => {
+		"listen_ports" => ["80"]
+	}
+)
