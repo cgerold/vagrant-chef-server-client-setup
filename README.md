@@ -55,14 +55,16 @@ You can also create your own custom knife configuration from scratch (optional):
 $ knife configure -i
 ```
 
-* Copy the pem keys from chef server to your local .chef/ directory
+* Copy the pem keys from the chef server to your local directory chef-repo/.chef/
 ```
-$ cp admin.pem /vagrant/chef-repo/.chef/
-$ cp chef-validator.pem /vagrant/chef-repo/.chef/
+$ vagrant ssh
+$ cp /etc/chef/admin.pem /vagrant/chef-repo/.chef/
+$ cp /etc/chef/chef-validator.pem /vagrant/chef-repo/.chef/
+$ exit
 ```
-* Change to the chef-repo directory
+* Change to the local directory chef-repo/
 ```
-cd chef-repo/
+$ cd chef-repo/
 ```
 
 * Check your config with
@@ -72,8 +74,9 @@ chef-validator
 chef-webui
 ```
 
-* add the chef server ip to the hosts file of your node(s) (/etc/hosts)
+* add the chef server ip to the hosts file of your node(s)
 ```
+$ sudo vi /etc/hosts
 192.168.32.101  chef-server.dev
 ```
 
@@ -98,7 +101,7 @@ $ knife node edit node_name
 {
 	"name": "node1",
 	"chef_environment": "_default",
-	"normal": {
+	"normal": {knife
 		"tags": []
 	},
 	"run_list": [
@@ -107,13 +110,12 @@ $ knife node edit node_name
 }
 ```
 
-* Get the cookbooks including their dependencies via Berkshelf
+* Install the cookbooks defined in the chef-repo/Berksfile including their dependencies via Berkshelf to you local disk
 ```
 $ berks install
 ```
 
-* Upload the cookbooks including dependencies via Berkshelf to the chef server
+* Upload the cookbooks defined in the chef-repo/Berksfile including dependencies via Berkshelf to the chef server
 ```
-$ berks upload apache2 --ssl-verify=false
-$ berks upload mysql --ssl-verify=false
+$ berks upload --ssl-verify=false
 ```
