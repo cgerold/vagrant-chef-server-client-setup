@@ -80,9 +80,9 @@ $ sudo vi /etc/hosts
 192.168.32.101  chef-server.dev
 ```
 
-* Bootstrap your node(s)
+* Bootstrap your node(s) (be sure your in the local directory chef-repo/)
 ```
-$ knife bootstrap IP_OF_YOUR_NODE(S) -x vagrant -P vagrant --sudo --node-name NODE_NAME
+$ knife bootstrap IP_OF_THE_NODE -x vagrant -P vagrant --sudo --node-name NODE_NAME
 ```
 
 * Upload the chef webserver and node1 role
