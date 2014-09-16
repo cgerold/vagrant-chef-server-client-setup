@@ -1,4 +1,4 @@
-name "node1"
+name "node2"
 description "Role for node1"
 
 run_list(
@@ -7,6 +7,6 @@ run_list(
 
 override_attributes(
 	"mysql" => {
-		"server_root_password" => "node1",
-	}
+		"server_root_password" => "node2",
+	},
 )
