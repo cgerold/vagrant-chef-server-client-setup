@@ -1,8 +1,15 @@
-# Vagrant-Multi-Machine Chef Server-Client-Setup [DRAFT]
+# Vagrant-Multi-Machine Chef Server-Client-Setup
 
-The repository contains a Vagrant-Multi-Machine configuration that provides a local chef server-client-setup.
-The setup is tested with Ubuntu 12.04 64Bit LTS on Mac OS X.
-If you want to change the OS of the local vagrant boxes you have to edit the following lines in the Vagrantfile:
+## Preface
+
+This repository contains a Vagrant Multi-Machine configuration that provides you a local Chef-Server-Client setup.
+Furthermore it includes the needed files and configuration to install a executable LAMP-Stack via Chef Server on your Chef Client nodes:
+* Ubuntu 12.04 64Bit LTS
+* MySQL
+* Apache2
+* PHP5 (mod_php5)
+
+The setups has been tested on Mac OS X. If you want to change the operation system of the local vagrant boxes you have to edit the following line in the Vagrantfile:
 ```
 chef_server_config.vm.box = "hashicorp/precise64"
 ```
@@ -93,19 +100,19 @@ $ knife role from file chef-repo/roles/node1.rb
 
 * Open the node's definition file
 ```
-$ knife node edit node_name
+$ knife node edit NODE_NAME
 ```
 
-* Assign the webserver role to the node (place the role within the run_list definition)
+* Assign the node's role to the chef node (place the role within the run_list definition)
 ```
 {
-	"name": "node1",
+	"name": "NODE_NAME",
 	"chef_environment": "_default",
-	"normal": {knife
+	"normal": {
 		"tags": []
 	},
 	"run_list": [
-		"role[webserver]"
+		"role[NODE_NAME]"
 	]
 }
 ```
@@ -118,4 +125,10 @@ $ berks install
 * Upload the cookbooks defined in the chef-repo/Berksfile including dependencies via Berkshelf to the chef server
 ```
 $ berks upload --ssl-verify=false
+```
+
+* Run the chef-client on your node
+```
+$ vagrant ssh NODE_NAME
+$ sudo chef-client
 ```
