@@ -1,8 +1,8 @@
-# Vagrant-Multi-Machine Chef Server-Client-Setup
+# Vagrant Multi-Machine Chef Server-Client-Setup
 
 ## Preface
 
-This repository contains a Vagrant Multi-Machine configuration that provides you a local Chef-Server-Client setup.
+This repository contains a Vagrant Multi-Machine configuration that provides you a local Chef Server-Client-Setup.
 Furthermore it includes the needed files and configuration to install a executable LAMP-Stack via Chef Server on your Chef Client nodes:
 * Ubuntu 12.04 64Bit LTS
 * MySQL
@@ -21,8 +21,8 @@ There are useful preconfigured boxes available at https://vagrantcloud.com/.
 * Ruby 2.1.0
 * Vagrant 1.6.3 (https://www.vagrantup.com/)
 * Chef Development Kit 0.2.1 (http://downloads.getchef.com/chef-dk/)
-* Chef Omnibus Installer (chef-client 11.14.6)
-** Use this to install chef-client, berkshelf, knife and others on your local workstation
+* Chef Omnibus Installer (https://docs.getchef.com/install_omnibus.html)
+  * Use this to install chef-client, berkshelf, knife and other useful chef tool on your local workstation
 ```
 curl -L https://www.getchef.com/chef/install.sh | sudo bash
 ```
