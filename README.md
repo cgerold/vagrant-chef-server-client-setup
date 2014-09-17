@@ -30,15 +30,17 @@ curl -L https://www.getchef.com/chef/install.sh | sudo bash
 ## Installation
 
 * Checkout repository
-* Install Vagrant Omnibus (https://github.com/schisamo/vagrant-omnibus)
 ```
-$ vagrant plugin install vagrant-omnibus
+$ git clone https://github.com/cgerold/vagrant-chef-server-client-setup.git
+$ cd vagrant-chef-server-client-setup
 ```
+
 * Install Vagrant Berkshelf (https://github.com/berkshelf/vagrant-berkshelf)
+  * we need it to handle the chef-server-cookbook that installs the Chef Server
 ```
 $ install vagrant berkshelf
 ```
-* Install the required cookbooks
+* Install the required cookbook chef-server
 ```
 $ berks install
 ```
@@ -47,14 +49,17 @@ $ berks install
 $ vagrant up [NAME_OF_THE_BOX]
 ```
 
-After the chef server is up and the service is running you can call the chef server gui by enter https://192.168.32.101 in your browser.
+* Edit you local hosts file
+```
+$ sudo sh -c 'echo "192.168.32.101  chef-server.dev" >> /etc/hosts'
+```
+
+After the chef server is up and the service is running you can call the chef server gui by enter https://chef-server.dev in your browser:
 * Default user: admin
 * Default password: p@ssw0rd1
 You will be asked to change the default password.
 
 ## Configuration
-
-* Copy the pem-keys to your local disk
 
 This repository comes with a ready configured knife. You have to replace the content of the validation- and the user-pem file.
 You can also create your own custom knife configuration from scratch (optional):
@@ -69,12 +74,13 @@ $ cp /etc/chef/admin.pem /vagrant/chef-repo/.chef/
 $ cp /etc/chef/chef-validator.pem /vagrant/chef-repo/.chef/
 $ exit
 ```
-* Change to the local directory chef-repo/
+
+* Change to the local directory vagrant-chef-server-client-setup/chef-repo/
 ```
 $ cd chef-repo/
 ```
 
-* Check your config with
+* Check your valid knife configuration with
 ```
 $ knife client list
 chef-validator
@@ -83,8 +89,8 @@ chef-webui
 
 * add the chef server ip to the hosts file of your node(s)
 ```
-$ sudo vi /etc/hosts
-192.168.32.101  chef-server.dev
+$ vagrant ssh NODE_NAME
+$ sudo sh -c 'echo "192.168.32.101  chef-server.dev" >> /etc/hosts'
 ```
 
 * Bootstrap your node(s) (be sure your in the local directory chef-repo/)
