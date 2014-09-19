@@ -22,7 +22,7 @@ There are useful preconfigured boxes available at https://vagrantcloud.com/.
 * Vagrant 1.6.3 (https://www.vagrantup.com/)
 * Chef Development Kit 0.2.1 (http://downloads.getchef.com/chef-dk/)
 * Chef Omnibus Installer (https://docs.getchef.com/install_omnibus.html)
-  * Use this to install chef-client, berkshelf, knife and other useful chef tool on your local workstation
+  * Use this to install chef-client, berkshelf, knife and other useful chef tools on your local workstation
 ```
 curl -L https://www.getchef.com/chef/install.sh | sudo bash
 ```
@@ -38,7 +38,7 @@ $ cd vagrant-chef-server-client-setup
 * Install Vagrant Berkshelf (https://github.com/berkshelf/vagrant-berkshelf)
   * we need it to handle the chef-server-cookbook that installs the Chef Server
 ```
-$ install vagrant berkshelf
+$ vagrant plugin install vagrant-berkshelf
 ```
 * Install the required cookbook chef-server
 ```
