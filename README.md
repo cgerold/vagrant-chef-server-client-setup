@@ -17,7 +17,7 @@ There are useful preconfigured boxes available at https://vagrantcloud.com/.
 
 ## Requirement
 
-* VirtualBox
+* VirtualBox 4.3.16
 * Ruby 2.1.0
 * Vagrant 1.6.3 (https://www.vagrantup.com/)
 * Chef Development Kit 0.2.1 (http://downloads.getchef.com/chef-dk/)
