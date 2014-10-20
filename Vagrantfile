@@ -4,7 +4,7 @@
 VAGRANTFILE_API_VERSION = "2"
 OMNIBUS_CHEF_VERSION = :latest
 
-# Define chef Client Nodes
+# Define Chef Client Nodes
 chef_client_nodes = [
 	{
 		:name => :node1,
@@ -20,7 +20,7 @@ chef_client_nodes = [
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
-		# Chef Server
+		# Configure Chef Server
 		# https://docs.vagrantup.com/v2/provisioning/chef_solo.html
 	config.vm.define :chef_server, primary: true do |chef_server_config|
 		chef_server_config.vm.box = "hashicorp/precise64"
@@ -49,7 +49,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 		end
 	end
 
-		# Chef Client Nodes
+		# Configure Chef Client Nodes
 		# https://docs.vagrantup.com/v2/provisioning/chef_client.html
 	chef_client_nodes.each do |node_option|
 		config.vm.define node_option[:name] do |node_config|
@@ -59,9 +59,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 		end
 	end
 
-		# Virtual Box Configuration
+		# General Virtual Box Configuration
 	config.vm.provider "virtualbox" do |vb|
-		vb.customize ['modifyvm', :id, '--memory', '512']
+		vb.customize ['modifyvm', :id, '--memory', '768']
 		vb.customize ['modifyvm', :id, '--cpus', '1']
 		vb.gui = false
 	end
