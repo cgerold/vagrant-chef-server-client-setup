@@ -1,5 +1,5 @@
 name "node2"
-description "Role for node1"
+description "Role for node2"
 
 run_list(
     "role[webserver]"

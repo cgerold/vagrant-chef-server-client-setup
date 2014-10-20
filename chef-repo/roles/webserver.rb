@@ -13,7 +13,6 @@ run_list(
 
 default_attributes(
     "apache" => {
-        "listen_ports" => ["80"],
         "default_site_enabled" => true
     }
 )
